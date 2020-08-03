@@ -164,6 +164,7 @@ export class MyWidgetsModule {
 ```
 
 浏览器会重新加载，左侧导航栏如果出现了`测试组件`则说明组件添加成功
+![](https://github.com/zhangjian4/widget-develop-project/blob/master/doc/img/create-widget1.jpg?raw=true)
 
 
 
