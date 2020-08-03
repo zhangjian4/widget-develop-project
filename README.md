@@ -290,12 +290,15 @@ export class TestWidgetComponent implements OnInit {
 ```
 
 `@Data`的参数也是JSON Schema的格式,里面可以定义多个字段
+
 **数据目前只支持Array&lt;Object&gt;格式**
 
 此时组件上呈现的文本将会变成数据中的文本
+
 ![](/doc/img/data1.jpg)
 
 修改数据组件上也会跟着改变
+
 ![](/doc/img/data2.jpg)
 
 ### 添加方法
@@ -347,6 +350,7 @@ export class TestWidgetComponent implements OnInit {
 `@Method`定义方法名称,`@Param`定义方法的参数
 
 可以点击模拟触发来调试方法
+
 ![](/doc/img/method1.jpg)
 
 ![](/doc/img/method2.jpg)
@@ -403,6 +407,7 @@ export class TestWidgetComponent implements OnInit, OnChanges {
 ```
 
 此时我们再去修改属性或数据将会在控制台输出改变的信息
+
 ![](/doc/img/change1.jpg)
 
 ### 如何引入第三方的依赖
@@ -421,9 +426,11 @@ ng build my-widgets
 ### 上传
 
 在笨笨君中点击导入组件
+
 ![](/doc/img/publish1.jpg)
 
 选择`/dist/my-widgets/bundles/my-widgets.umd.min.js`
+
 ![](/doc/img/publish2.jpg)
 
 
