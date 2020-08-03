@@ -164,9 +164,79 @@ export class MyWidgetsModule {
 ```
 
 浏览器会重新加载，左侧导航栏如果出现了`测试组件`则说明组件添加成功
-![](https://github.com/zhangjian4/widget-develop-project/blob/master/doc/img/create-widget1.jpg?raw=true)
+![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/create-widget1.jpg)
 
+### 2、添加属性
 
+下面将为测试组件添加一个颜色的属性
 
+* component
 
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Widget, Property } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit {
+  @Property('颜色', { format: 'color' })
+  color = '#000000';
+
+  constructor() {}
+
+  ngOnInit(): void {}
+}
+
+```
+
+* html
+
+```html
+<p [style.color]="color">test-widget works!</p>
+```
+
+`@Property`的第一个参数为显示的名称,第二个参数为[@delon/form](https://ng-alain.com/form/getting-started/zh)中的JSON Schema格式
+第一个参数相当于JSON schema中的`title`
+
+这时将会看到浏览器中出现颜色的属性，修改属性组件的颜色将会跟着改变
+![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/property1.jpg)
+
+### 3、添加事件
+
+下面将为测试组件添加点击事件
+
+* component
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Widget, Property, Event } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit {
+  @Property('颜色', { format: 'color' })
+  color = '#000000';
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  @Event('点击')
+  onClick() {}
+}
+
+```
+
+* html
+```html
+<p [style.color]="color" (click)="onClick()">test-widget works!</p>
+```
 
