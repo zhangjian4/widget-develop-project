@@ -405,6 +405,10 @@ export class TestWidgetComponent implements OnInit, OnChanges {
 此时我们再去修改属性或数据将会在控制台输出改变的信息
 ![](/doc/img/change1.jpg)
 
+### 如何引入第三方的依赖
+
+这个功能目前还在测试阶段，如果你的组件库中用到第三方依赖，请联系笨笨君的开发人员
+
 ## 发布
 
 ### 编译
@@ -414,8 +418,13 @@ export class TestWidgetComponent implements OnInit, OnChanges {
 ng build my-widgets
 ```
 
-上传
+### 上传
+
 在笨笨君中点击导入组件
 ![](/doc/img/publish1.jpg)
 
+选择`/dist/my-widgets/bundles/my-widgets.umd.min.js`
+![](/doc/img/publish2.jpg)
 
+
+**一个组件库中可以定义多个组件，但是不能上传两个相同名称的组件库。比如两个人都开发了一个组件库叫做`my-widgets`，那个这两个人只有其中一个能上传。**
