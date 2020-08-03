@@ -1,10 +1,12 @@
 # 组件开发文档
 
-## 一、配置开发环境
+## 配置开发环境
 
-### 1、下载nodejs并安装
+### 安装Nodejs
 
-### 2、设置镜像
+下载[Nodejs](https://nodejs.org/zh-cn)并安装
+
+### 设置镜像
 
 在控制台中执行
 
@@ -14,7 +16,7 @@ npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass
 ```
 
 
-### 3、安装angular-cli
+### 安装angular-cli
 
 在控制台中执行
 
@@ -22,11 +24,11 @@ npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass
 npm install -g @angular/cli
 ```
 
-### 4、下载vscode或webstorm并安装
+### 下载vscode或webstorm并安装
 
-## 二、创建项目
+## 创建项目
 
-### 1、克隆项目
+### 克隆项目
 
 打开任意目录，在目录下执行
 
@@ -38,7 +40,7 @@ cd widget-develop-project
 
 用vscode或webstorm打开项目
 
-### 2、安装依赖
+### 安装依赖
 
 在当前目录执行
 
@@ -46,7 +48,7 @@ cd widget-develop-project
 npm install
 ```
 
-### 3、创建组件库
+### 创建组件库
 
 在当前目录执行
 
@@ -105,9 +107,9 @@ ng serve
 
 浏览器打开 http://localhost:4200
 
-## 三、添加组件
+## 添加组件
 
-### 1、创建组件
+### 创建组件
 在当前目录执行
 
 ```bash
@@ -164,9 +166,9 @@ export class MyWidgetsModule {
 ```
 
 浏览器会重新加载，左侧导航栏如果出现了`测试组件`则说明组件添加成功
-![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/create-widget1.jpg)
+![](/doc/img/create-widget1.jpg)
 
-### 2、添加属性
+### 添加属性
 
 下面将为测试组件添加一个颜色的属性
 
@@ -199,13 +201,14 @@ export class TestWidgetComponent implements OnInit {
 <p [style.color]="color">test-widget works!</p>
 ```
 
-`@Property`的第一个参数为显示的名称,第二个参数为[@delon/form](https://ng-alain.com/form/getting-started/zh)中的JSON Schema格式
-第一个参数相当于JSON schema中的`title`
+`@Property`的第一个参数为显示的名称,第二个参数为[@delon/form](https://ng-alain.com/form/getting-started/zh)中的JSON Schema格式。
 
-这时将会看到浏览器中出现颜色的属性，修改属性组件的颜色将会跟着改变
+**第一个参数相当于JSON schema中的`title`**
+
+此时将会看到浏览器中出现颜色的属性，修改属性组件的颜色将会跟着改变
 ![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/property1.jpg)
 
-### 3、添加事件
+### 添加事件
 
 下面将为测试组件添加点击事件
 
@@ -236,7 +239,14 @@ export class TestWidgetComponent implements OnInit {
 ```
 
 * html
+  
 ```html
 <p [style.color]="color" (click)="onClick()">test-widget works!</p>
 ```
 
+`@Event`的第一个参数为事件的名称。
+
+**在组件中只负责触发事件,事件内部不用写任何代码,触发事件后的操作将会通过配置去执行**
+
+点击浏览器中的组件将会看到点击事件被触发的消息
+![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/event1.jpg)
