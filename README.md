@@ -286,7 +286,7 @@ export class TestWidgetComponent implements OnInit {
 
 * html
 ```html
-<p [style.color]="color" (click)="onClick()">{{ data[0].text }}</p>
+<p [style.color]="color" (click)="onClick()">{{ data[0]?.text }}</p>
 ```
 
 `@Data`的参数也是JSON Schema的格式,里面可以定义多个字段
@@ -344,7 +344,7 @@ export class TestWidgetComponent implements OnInit {
 * html
 
 ```html
-<p [style.color]="color" [style.fontSize.px]="size" (click)="onClick()">{{ data[0].text }}</p>
+<p [style.color]="color" [style.fontSize.px]="size" (click)="onClick()">{{ data[0]?.text }}</p>
 ```
 
 `@Method`定义方法名称,`@Param`定义方法的参数
