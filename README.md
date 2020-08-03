@@ -206,7 +206,7 @@ export class TestWidgetComponent implements OnInit {
 **第一个参数相当于JSON schema中的`title`**
 
 此时将会看到浏览器中出现颜色的属性，修改属性组件的颜色将会跟着改变
-![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/property1.jpg)
+![](/doc/img/property1.jpg)
 
 ### 添加事件
 
@@ -249,4 +249,173 @@ export class TestWidgetComponent implements OnInit {
 **在组件中只负责触发事件,事件内部不用写任何代码,触发事件后的操作将会通过配置去执行**
 
 点击浏览器中的组件将会看到点击事件被触发的消息
-![](https://raw.githubusercontent.com/zhangjian4/widget-develop-project/master/doc/img/event1.jpg)
+![](/doc/img/event1.jpg)
+
+### 添加数据
+
+* component
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Widget, Property, Event, Data } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit {
+  @Property('颜色', { format: 'color' })
+  color = '#000000';
+
+  @Data({
+    properties: {
+      text: { type: 'string' }
+    }
+  })
+  data = [{ text: '这是一段文本' }];
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  @Event('点击')
+  onClick() {}
+}
+```
+
+* html
+```html
+<p [style.color]="color" (click)="onClick()">{{ data[0].text }}</p>
+```
+
+`@Data`的参数也是JSON Schema的格式,里面可以定义多个字段
+**数据目前只支持Array&lt;Object&gt;格式**
+
+此时组件上呈现的文本将会变成数据中的文本
+![](/doc/img/data1.jpg)
+
+修改数据组件上也会跟着改变
+![](/doc/img/data2.jpg)
+
+### 添加方法
+
+* component
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Widget, Property, Event, Data, Method, Param } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit {
+  @Property('颜色', { format: 'color' })
+  color = '#000000';
+
+  @Data({
+    properties: {
+      text: { type: 'string' }
+    }
+  })
+  data = [{ text: '这是一段文本' }];
+
+  size: number;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  @Event('点击')
+  onClick() {}
+
+  @Method('设置字体大小')
+  setSize(@Param('字体大小') size: number) {
+    this.size = size;
+  }
+}
+```
+
+* html
+
+```html
+<p [style.color]="color" [style.fontSize.px]="size" (click)="onClick()">{{ data[0].text }}</p>
+```
+
+`@Method`定义方法名称,`@Param`定义方法的参数
+
+可以点击模拟触发来调试方法
+![](/doc/img/method1.jpg)
+
+![](/doc/img/method2.jpg)
+
+![](/doc/img/method3.jpg)
+
+当然这个例子中通过属性也可以去改变字体大小
+
+### 如何捕获属性或数据的改变
+
+可以通过`angular`生命周期中的`ngOnChanges`来捕获属性或数据的改变
+
+* component
+
+```typescript
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Widget, Property, Event, Data, Method, Param } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit, OnChanges {
+  @Property('颜色', { format: 'color' })
+  color = '#000000';
+
+  @Data({
+    properties: {
+      text: { type: 'string' },
+    },
+  })
+  data = [{ text: '这是一段文本' }];
+
+  size: number;
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
+  @Event('点击')
+  onClick() {}
+
+  @Method('设置字体大小')
+  setSize(@Param('字体大小') size: number) {
+    this.size = size;
+  }
+}
+```
+
+此时我们再去修改属性或数据将会在控制台输出改变的信息
+![](/doc/img/change1.jpg)
+
+## 发布
+
+### 编译
+
+在项目的根目录下执行
+```bash
+ng build my-widgets
+```
+
+上传
+在笨笨君中点击导入组件
+![](/doc/img/publish1.jpg)
+
+
