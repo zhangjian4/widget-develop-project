@@ -19,6 +19,9 @@
     "@angular/platform-browser": "~9.1.7",
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
+    "@delon/form": "^9.5.5",
+    "@delon/util": "^9.5.5",
+    "ng-zorro-antd": "^9.3.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

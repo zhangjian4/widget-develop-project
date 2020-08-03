@@ -30,12 +30,16 @@
 
 ### 2、安装依赖
 
-先项目文件夹中执行
+在项目文件夹中执行
 
 `npm install`
 
 ### 3、创建组件库
 
-执行命令
+在项目文件夹中执行命令
+
+`ng g library 组件库名称`
+
+如
 
 `ng g library my-widgets`
