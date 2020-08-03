@@ -9,9 +9,11 @@
 在控制台中执行
 
 `npm config set registry http://172.28.92.1:9000/repository/npm_sc`
+
 `npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass`
 
 ### 3、安装angular-cli
+
 在控制台中执行
 
 `npm install -g @angular/cli`

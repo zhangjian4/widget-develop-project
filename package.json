@@ -24,6 +24,8 @@
     "ng-zorro-antd": "^9.3.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "widget-base": "^2.0.14",
+    "widget-developer": "^2.0.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
