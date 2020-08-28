@@ -251,6 +251,43 @@ export class TestWidgetComponent implements OnInit {
 点击浏览器中的组件将会看到点击事件被触发的消息
 ![](/doc/img/event1.jpg)
 
+#### 添加事件参数
+
+* component
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Widget, Property, Event, EventParam } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit {
+  @Property('颜色', { format: 'color' })
+  color = '#000000';
+
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  @Event('点击')
+  onClick(@EventParam('参数1') param1: string) {}
+}
+
+```
+
+* html
+  
+```html
+<p [style.color]="color" (click)="onClick('test')">test-widget works!</p>
+```
+
+再次点击浏览器中的组件将会看到传入的参数值
+![](/doc/img/event2.jpg)
+
 ### 添加数据
 
 * component
