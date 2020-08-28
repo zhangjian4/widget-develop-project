@@ -293,7 +293,7 @@ export class TestWidgetComponent implements OnInit {
 * component
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import { Widget, Property, Event, Data } from 'widget-base';
+import { Widget, Data } from 'widget-base';
 
 @Component({
   selector: 'lib-test-widget',
@@ -302,28 +302,22 @@ import { Widget, Property, Event, Data } from 'widget-base';
 })
 @Widget('测试组件')
 export class TestWidgetComponent implements OnInit {
-  @Property('颜色', { format: 'color' })
-  color = '#000000';
-
   @Data({
     properties: {
-      text: { type: 'string' }
-    }
+      text: { type: 'string' },
+    },
   })
   data = [{ text: '这是一段文本' }];
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  @Event('点击')
-  onClick() {}
 }
 ```
 
 * html
 ```html
-<p [style.color]="color" (click)="onClick()">{{ data[0]?.text }}</p>
+<p>{{ data[0]?.text }}</p>
 ```
 
 `@Data`的参数也是JSON Schema的格式,里面可以定义多个字段
@@ -338,12 +332,15 @@ export class TestWidgetComponent implements OnInit {
 
 ![](/doc/img/data2.jpg)
 
-### 添加方法
+### 交互
+组件可以将某个值绑定到全局变量，由此来实现跟其他组件之间的交互。
+
+给组件增加一个`EventEmitter`类型的字段,并加上`@DataOutput()`装饰器,在需要传出值的时候调用该字段的`emit`方法。
 
 * component
 ```typescript
-import { Component, OnInit } from '@angular/core';
-import { Widget, Property, Event, Data, Method, Param } from 'widget-base';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Widget, Data, DataOutput } from 'widget-base';
 
 @Component({
   selector: 'lib-test-widget',
@@ -352,24 +349,53 @@ import { Widget, Property, Event, Data, Method, Param } from 'widget-base';
 })
 @Widget('测试组件')
 export class TestWidgetComponent implements OnInit {
-  @Property('颜色', { format: 'color' })
-  color = '#000000';
-
   @Data({
     properties: {
-      text: { type: 'string' }
-    }
+      text: { type: 'string' },
+    },
   })
   data = [{ text: '这是一段文本' }];
 
+  @DataOutput('传出的值')
+  output = new EventEmitter<string>();
+
+  constructor() {}
+
+  ngOnInit(): void {}
+}
+```
+
+* html
+
+```html
+<p (click)="output.emit(data[0]?.text)">{{ data[0]?.text }}</p>
+```
+
+先将变量绑定到全局变量`a`，然后点击组件，再点击查看全局变量，可以看到传出去的值已经绑定到了全局变量中的`a`
+![](/doc/img/output1.jpg)
+
+![](/doc/img/output2.jpg)
+
+
+### 添加方法
+
+* component
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Widget, Method, Param } from 'widget-base';
+
+@Component({
+  selector: 'lib-test-widget',
+  templateUrl: './test-widget.component.html',
+  styleUrls: ['./test-widget.component.css'],
+})
+@Widget('测试组件')
+export class TestWidgetComponent implements OnInit {
   size: number;
 
   constructor() {}
 
   ngOnInit(): void {}
-
-  @Event('点击')
-  onClick() {}
 
   @Method('设置字体大小')
   setSize(@Param('字体大小') size: number) {
@@ -381,7 +407,7 @@ export class TestWidgetComponent implements OnInit {
 * html
 
 ```html
-<p [style.color]="color" [style.fontSize.px]="size" (click)="onClick()">{{ data[0]?.text }}</p>
+<p [style.fontSize.px]="size">这是一段文本</p>
 ```
 
 `@Method`定义方法名称,`@Param`定义方法的参数
