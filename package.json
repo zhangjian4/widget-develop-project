@@ -22,6 +22,7 @@
     "@delon/form": "^9.5.5",
     "@delon/util": "^9.5.5",
     "ng-zorro-antd": "^9.3.0",
+    "ng-zorro-antd-mobile": "^2.0.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "widget-base": "^2.0.22",
