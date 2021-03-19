@@ -33,12 +33,10 @@
               }
             ],
             "styles": [
-              "node_modules/ng-zorro-antd-mobile/src/ng-zorro-antd-mobile.min.css",
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/ajv/dist/ajv.bundle.js"
             ]
           },
           "configurations": {

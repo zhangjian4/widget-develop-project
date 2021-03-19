@@ -19,14 +19,13 @@
     "@angular/platform-browser": "~11.2.6",
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
-    "@delon/form": "^10.0.0",
-    "@delon/util": "^10.0.0",
+    "@delon/form": "^11.8.0",
+    "@delon/util": "^11.8.0",
     "ng-zorro-antd": "^11.2.0",
-    "ng-zorro-antd-mobile": "^3.0.3",
     "rxjs": "~6.6.6",
     "tslib": "^2.0.0",
-    "widget-base": "^2.1.1",
-    "widget-developer": "^2.1.0",
+    "widget-base": "^2.2.4",
+    "widget-developer": "^2.2.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -47,6 +46,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.5"
+    "typescript": "~4.1.0"
   }
 }

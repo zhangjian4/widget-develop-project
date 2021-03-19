@@ -11,7 +11,6 @@ import zh from '@angular/common/locales/zh';
 import { DelonFormModule } from '@delon/form';
 import { AlainConfigService } from '@delon/util';
 import { WidgetDeveloperModule } from 'widget-developer';
-import { NgZorroAntdMobileModule } from 'ng-zorro-antd-mobile';
 
 registerLocaleData(zh);
 
@@ -24,7 +23,6 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     DelonFormModule.forRoot(),
     WidgetDeveloperModule,
-    NgZorroAntdMobileModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }, AlainConfigService],
   bootstrap: [AppComponent],
